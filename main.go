@@ -10,11 +10,10 @@ import (
 	"strings"
 )
 
-var startPoint = `./test`
-
-//var startPoint = "C:/mine/GoWorkspace/src/github.com/runningbar/go-fileappend"
+var startPoint = "C:/mine/GoWorkspace/src/github.com/runningbar/go-fileappend"
 var except = []string{"handled", "out"}
-var flags = []string{"rmvb", "avi", "mp4", "wmv"}
+
+var flags = []string{"txt"}
 var source = except[0]
 var dest = except[1]
 
