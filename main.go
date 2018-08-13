@@ -7,13 +7,17 @@ import (
 	"io/ioutil"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
+	"time"
 )
 
-var startPoint = "C:/mine/GoWorkspace/src/github.com/runningbar/go-fileappend"
-var except = []string{"handled", "out"}
+var startPoint = `/cores/libm/varv`
+var flags = []string{"rmvb", "avi", "mp4", "wmv", "mkv", "jpg", "png", "JPG", "MP4"}
 
-var flags = []string{"txt"}
+//var startPoint = "C:/mine/GoWorkspace/src/github.com/runningbar/go-fileappend"
+//var flags = []string{"txt"}
+var except = []string{"handled", "out"}
 var source = except[0]
 var dest = except[1]
 
@@ -116,13 +120,18 @@ func appendFile(fileNames []string, newNames []string, sp string, dest string) {
 		fd.Close()
 		fd, _ = os.OpenFile(sp+"/"+dest+"/"+newNames[i], os.O_WRONLY, 0666)
 		fd.Seek(0, os.SEEK_END)
-		fd.WriteString(newNames[i][:strings.LastIndex(newNames[i], `.`)])
+		now := time.Now().Unix()
+		appendContent := newNames[i][:strings.LastIndex(newNames[i], `.`)]
+		appendContent += strconv.FormatInt(now, 10)
+		fd.WriteString(appendContent)
 		fd.Close()
 
 		n := fileName[:strings.LastIndex(fileName, `.`)]
 		f := fileName[strings.LastIndex(fileName, `.`)+1:]
 		successName := n + "_OK." + f
 		os.Rename(fileName, successName)
+		//sname := successName[strings.LastIndex(successName, `/`)+1:]  //test code
+		//os.Rename(sp+"/"+dest+"/"+newNames[i], sp+"/"+dest+"/"+sname) // test code
 	}
 	fmt.Println("file append complete")
 }
@@ -163,5 +172,5 @@ func main() {
 	//fmt.Println(newNames)
 	appendFile(fileNames, newNames, startPoint, dest)
 
-	//getFileSearchKey(`SHKD664_OK.avi`)
+	//getFileSearchKey(`abc_OK.avi`)
 }
