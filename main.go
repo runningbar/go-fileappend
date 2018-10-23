@@ -13,7 +13,7 @@ import (
 )
 
 var startPoint = `/cores/libm/varv`
-var flags = []string{"rmvb", "avi", "mp4", "wmv", "mkv", "jpg", "png", "JPG", "MP4"}
+var flags = []string{"rmvb", "avi", "mp4", "wmv", "mkv", "jpg", "png", "JPG", "MP4", "AVI"}
 
 //var startPoint = "C:/mine/GoWorkspace/src/github.com/runningbar/go-fileappend"
 //var flags = []string{"txt"}
